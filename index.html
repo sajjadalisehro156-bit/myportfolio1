@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sajjad Ali — Python AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12151A;
+    --ink-raised: #1A1E26;
+    --line: #2A303B;
+    --text: #ECEAE4;
+    --text-muted: #939AA8;
+    --signal: #E8B34A;
+    --steel: #6C8CB0;
+    --radius: 3px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ink: #12151A; --ink-raised: #1A1E26; --line: #2A303B;
+      --text: #ECEAE4; --text-muted: #939AA8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* ---- Nav ---- */
+  header {
+    position: sticky; top: 0; top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: rgba(18,21,26,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; padding-bottom: 18px; }
+  .brand { font-size: 17px; font-weight: 600; }
+  .brand span { color: var(--signal); }
+  .navlinks { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--text-muted); }
+  .navlinks a:hover { color: var(--text); }
+  .navlinks { display: none; }
+  @media (min-width: 720px) { .navlinks { display: flex; } }
+
+  /* ---- Hero ---- */
+  .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--line); }
+  .hero-tag { color: var(--steel); font-size: 14px; margin-bottom: 18px; display: block; }
+  .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.05; max-width: 15ch; }
+  .hero .role { color: var(--text-muted); font-size: clamp(17px, 2.4vw, 21px); margin-top: 20px; max-width: 42ch; }
+  .terminal {
+    margin-top: 36px;
+    background: var(--ink-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    font-size: 14px;
+    max-width: 460px;
+    color: var(--steel);
+  }
+  .terminal .cursor { display: inline-block; width: 7px; height: 15px; background: var(--signal); vertical-align: middle; animation: blink 1s step-end infinite; margin-left: 2px; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .terminal .cursor { animation: none; } }
+  .hero-links { margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: var(--radius);
+    font-size: 14px; text-decoration: none; border: 1px solid var(--line);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .btn.primary { background: var(--signal); color: #14171C; border-color: var(--signal); font-weight: 500; }
+  .btn.primary:hover { background: #f0c169; }
+  .btn.ghost:hover { border-color: var(--steel); }
+
+  /* ---- Section shell ---- */
+  section { padding: 68px 0; border-bottom: 1px solid var(--line); }
+  .kicker { color: var(--text-muted); font-size: 13px; margin-bottom: 12px; }
+  section h2 { font-size: clamp(24px, 3.4vw, 32px); margin-bottom: 36px; max-width: 20ch; }
+
+  /* ---- About ---- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; }
+  @media (max-width: 780px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about-grid p { color: var(--text-muted); max-width: 60ch; }
+  .about-grid p + p { margin-top: 16px; }
+  .stat-list { display: flex; flex-direction: column; gap: 22px; }
+  .stat { border-left: 2px solid var(--line); padding-left: 16px; }
+  .stat b { display: block; font-size: 26px; font-family: 'Space Grotesk', sans-serif; color: var(--signal); }
+  .stat span { color: var(--text-muted); font-size: 13px; }
+
+  /* ---- Skills ---- */
+  .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 780px) { .skill-groups { grid-template-columns: 1fr; } }
+  .skill-group h3 { font-size: 15px; color: var(--steel); margin-bottom: 12px; }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; }
+  .skill-group li { color: var(--text-muted); font-size: 14px; padding: 6px 0; border-top: 1px solid var(--line); }
+  .skill-group li:first-child { border-top: none; }
+
+  /* ---- Projects ---- */
+  .project { padding: 28px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 2fr; gap: 28px; }
+  .project:last-child { padding-bottom: 0; }
+  @media (max-width: 780px) { .project { grid-template-columns: 1fr; gap: 10px; } }
+  .project-num { color: var(--text-muted); font-size: 13px; }
+  .project h3 { font-size: 20px; margin-bottom: 8px; }
+  .project p { color: var(--text-muted); margin: 0 0 14px; max-width: 58ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 12px; color: var(--steel); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 9px; }
+
+  /* ---- Contact ---- */
+  .contact { border-bottom: none; }
+  .contact-inner { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  .contact h2 { margin-bottom: 12px; }
+  .contact p { color: var(--text-muted); max-width: 46ch; margin: 0; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .contact-links a { font-size: 15px; border-bottom: 1px solid var(--line); padding-bottom: 2px; text-decoration: none; }
+  .contact-links a:hover { border-color: var(--signal); }
+
+  footer { padding: 26px 0 calc(26px + env(safe-area-inset-bottom, 0px)); color: var(--text-muted); font-size: 13px; display: flex; justify-content: space-between; }
+  @media (max-width: 560px) { footer { flex-direction: column; gap: 6px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Sajjad Ali <span>·</span></div>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-tag mono">Python · AI / ML Engineering</span>
+    <h1>Sajjad Ali builds AI systems that ship, not just notebooks that impress.</h1>
+    <p class="role">I design and deploy machine learning and AI-driven applications end to end — from data pipelines and model training to production APIs — using Python as the core toolset.</p>
+    <div class="terminal mono">
+      &gt; import sajjad<br>
+      &gt; sajjad.status()<br>
+      building, training, shipping<span class="cursor"></span>
+    </div>
+    <div class="hero-links">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker mono">01 — About</div>
+      <h2>An engineer who takes models from prototype to production.</h2>
+      <p>I work across the full AI engineering lifecycle: framing the problem, wrangling and validating data, building and fine-tuning models, then wrapping them in reliable, monitored services. Python is the thread that runs through all of it — from research scripts to the APIs that serve real traffic.</p>
+      <p>I care most about the handoff most people skip: turning something that works on my machine into something a team can depend on. Replace this paragraph with the story of your own path — where you started, what you specialize in now, and the kind of problems you like solving.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><b>Many</b><span>Projects shipped and iterated on</span></div>
+      <div class="stat"><b>Python</b><span>Primary language, end to end</span></div>
+      <div class="stat"><b>AI / ML</b><span>Core focus area</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker mono">02 — Skills</div>
+    <h2>Toolkit</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Languages & Core</h3>
+        <ul>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>Bash / Linux</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>AI / ML</h3>
+        <ul>
+          <li>Model training & fine-tuning</li>
+          <li>PyTorch / TensorFlow</li>
+          <li>LLM & NLP applications</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Engineering</h3>
+        <ul>
+          <li>APIs & backend services</li>
+          <li>Docker & deployment</li>
+          <li>Data pipelines</li>
+        </ul>
+      </div>
+    </div>
+    <p class="mono" style="color:var(--text-muted); font-size:13px; margin-top:24px;">— edit this list to match your actual stack and tools —</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker mono">03 — Projects</div>
+    <h2>Selected work</h2>
+
+    <div class="project">
+      <div class="project-num mono">01</div>
+      <div>
+        <h3>Project name</h3>
+        <p>One or two sentences on the problem this project solved, what you built, and the outcome or impact. Swap this in for a real project of yours.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">API</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-num mono">02</div>
+      <div>
+        <h3>Project name</h3>
+        <p>What the project does, the stack behind it, and a concrete result — accuracy, latency, users, or scale — whatever makes it real.</p>
+        <div class="tags"><span class="tag">NLP</span><span class="tag">PyTorch</span><span class="tag">Deployment</span></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-num mono">03</div>
+      <div>
+        <h3>Project name</h3>
+        <p>Short description of the project's purpose and your specific role in building it, plus a link to the repo or a live demo if available.</p>
+        <div class="tags"><span class="tag">Data Pipeline</span><span class="tag">Automation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <div class="kicker mono">04 — Contact</div>
+      <h2>Let's talk about your next AI project.</h2>
+      <p>Open to roles, collaborations, and interesting problems in applied AI and machine learning.</p>
+    </div>
+    <div class="contact-links mono">
+      <a href="mailto:your.email@example.com">your.email@example.com</a>
+      <a href="#">github.com/your-username</a>
+      <a href="#">linkedin.com/in/your-profile</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Sajjad Ali — Python AI Engineer</span>
+  <span class="mono">Built 2026</span>
+</footer>
+
+</body>
+</html>
