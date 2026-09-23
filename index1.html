@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sajjad Ali — Python AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B1220;
+    --panel: #121A2E;
+    --line: #263252;
+    --paper: #ECEAE3;
+    --paper-dim: #A9AEBB;
+    --signal: #F2B84B;
+    --code: #7FE7C4;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--signal); color: var(--ink); }
+
+  a { color: var(--code); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+  header.top {
+    position: sticky; top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: rgba(11,18,32,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; padding-bottom: 16px;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .mark { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--paper); letter-spacing: 0.02em; }
+  .mark span { color: var(--signal); }
+  nav.links { display: flex; gap: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; flex-wrap: wrap; }
+  nav.links a { color: var(--paper-dim); }
+  nav.links a:hover { color: var(--paper); }
+
+  section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  .hero { padding-top: 88px; }
+  .hero .role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--code);
+    margin: 0 0 18px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.05;
+    margin: 0 0 22px;
+    max-width: 11ch;
+  }
+  .hero p.lede {
+    max-width: 56ch;
+    font-size: 1.1rem;
+    color: var(--paper-dim);
+    margin: 0 0 34px;
+  }
+  .hero .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    padding: 12px 20px;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    border-radius: 2px;
+  }
+  .btn:hover { background: var(--signal); color: var(--ink); text-decoration: none; }
+  .cta-row .plain { color: var(--paper-dim); font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; }
+  .cta-row .plain a { color: var(--paper); }
+
+  h2.label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--paper-dim);
+    margin: 0 0 30px;
+  }
+  h2.label::before { content: "// "; color: var(--code); }
+
+  .about p { max-width: 62ch; color: var(--paper); font-size: 1.02rem; }
+  .about p + p { margin-top: 16px; }
+
+  .stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px 24px;
+    margin-top: 8px;
+  }
+  .stack div {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--paper);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .projects { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .project { background: var(--ink); padding: 26px 28px; }
+  .project .file {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    margin: 0 0 10px;
+  }
+  .project h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.4rem; margin: 0 0 10px; }
+  .project p { color: var(--paper-dim); margin: 0 0 14px; max-width: 58ch; }
+  .project .tags { display: flex; gap: 10px; flex-wrap: wrap; font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; }
+  .project .tags span { color: var(--code); border: 1px solid var(--line); padding: 3px 9px; border-radius: 2px; }
+  .project .link { font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; }
+
+  .contact h2.label { margin-bottom: 20px; }
+  .contact p.lede { color: var(--paper-dim); max-width: 46ch; margin: 0 0 28px; }
+  .contact .rows { font-family: 'IBM Plex Mono', monospace; font-size: 0.95rem; display: flex; flex-direction: column; gap: 10px; }
+  .contact .rows a { color: var(--paper); }
+  .contact .rows a:hover { color: var(--signal); }
+
+  footer { padding: 30px 0 50px; }
+  footer .wrap { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--paper-dim); }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 0 18px; }
+    section { padding: 44px 0; }
+    header.top .wrap { padding-top: 12px; padding-bottom: 12px; }
+    nav.links { gap: 12px; font-size: 0.78rem; }
+    .hero { padding-top: 56px; }
+    .hero h1 { max-width: none; }
+    .hero .cta-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .btn { width: 100%; text-align: center; }
+    .project { padding: 20px 20px; }
+    .stack { grid-template-columns: repeat(2, 1fr); gap: 8px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="mark">sajjad<span>.</span>ali</div>
+    <nav class="links">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="role">Python AI Engineer</p>
+    <h1>Sajjad Ali</h1>
+    <p class="lede">I build machine learning systems and AI-powered applications — from data pipelines to production APIs — mostly in Python.</p>
+    <div class="cta-row">
+      <a class="btn" href="#projects">View projects</a>
+      <span class="plain">or <a href="#contact">get in touch</a></span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2 class="label">about</h2>
+    <p>I'm a Python engineer focused on AI and machine learning, working across the stack from model training and fine-tuning to deploying the services that put those models in front of users.</p>
+    <p>I've built a number of projects spanning applied ML, LLM tooling, and backend systems — a few are outlined below.</p>
+
+    <div class="stack">
+      <div>Python</div>
+      <div>PyTorch</div>
+      <div>LLM Fine-tuning</div>
+      <div>LangChain</div>
+      <div>FastAPI</div>
+      <div>Vector Databases</div>
+      <div>Docker</div>
+      <div>SQL</div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section" id="projects">
+  <div class="wrap">
+    <h2 class="label">projects</h2>
+    <div class="projects">
+
+      <div class="project">
+        <p class="file">project_01.py</p>
+        <h3>Document QA with Retrieval-Augmented Generation</h3>
+        <p>A RAG pipeline that indexes internal documents into a vector store and answers questions over them with an LLM, cutting manual document search time significantly.</p>
+        <div class="tags"><span>Python</span><span>LangChain</span><span>Vector DB</span></div>
+      </div>
+
+      <div class="project">
+        <p class="file">project_02.py</p>
+        <h3>Fine-tuned Chat Assistant</h3>
+        <p>Fine-tuned an open-source LLM on a domain-specific dataset and served it behind a FastAPI endpoint with streaming responses.</p>
+        <div class="tags"><span>PyTorch</span><span>FastAPI</span><span>LLM</span></div>
+      </div>
+
+      <div class="project">
+        <p class="file">project_03.py</p>
+        <h3>Real-time Inference Service</h3>
+        <p>A containerized inference service for a computer vision model, built for low-latency predictions and deployed with Docker.</p>
+        <div class="tags"><span>Python</span><span>Docker</span><span>Computer Vision</span></div>
+      </div>
+
+    </div>
+    <p style="margin-top:18px; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color: var(--paper-dim);">Replace these with your actual projects, links, and write-ups.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="label">contact</h2>
+    <p class="lede">Open to opportunities and collaborations in AI and machine learning.</p>
+    <div class="rows">
+      <div>email — <a href="mailto:sajjadalisehro156@gmail.com">sajjadalisehro156@gmail.com</a></div>
+      <div>github — <a href="https://github.com/sajjadalisehro156-bit">github.com/sajjadalisehro156-bit</a></div>
+      <div>linkedin — <a href="#">linkedin.com/in/sajjadali</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Sajjad Ali</div>
+</footer>
+
+</body>
+</html>
